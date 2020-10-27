@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>
+            Politiquiz Quiz Questions
+        </title>
+    </head>
+    <body>
+        <h1> 
+            Politiquiz Questions
+        </h1>
+        <form>
+            <ol>
+            {% for question in questions %}
+                <h4> {{question.question_topic}} </h4>
+                <li> {{question.question_text}} </li>
+                <div>
+                    <input type="radio" id="{{question.question_id}}_1" name="{{question.question_id}}" value=1>
+                    <label for="{{question.question_id}}_1"> Strongly Disagree </label>
+                    <input type="radio" id="{{question.question_id}}_2" name="{{question.question_id}}" value=2>
+                    <label for="{{question.question_id}}_2"> Disagree </label>
+                    <input type="radio" id="{{question.question_id}}_3" name="{{question.question_id}}" value=3>
+                    <label for="{{question.question_id}}_3"> Neutral </label>
+                    <input type="radio" id="{{question.question_id}}_4" name="{{question.question_id}}" value=4>
+                    <label for="{{question.question_id}}_4"> Agree </label>
+                    <input type="radio" id="{{question.question_id}}_5" name="{{question.question_id}}" value=5>
+                    <label for="{{question.question_id}}_5"> Strongly Agree </label>
+                </div>
+            {% endfor %}
+            </ol> 
+            <div>
+                <button type="submit"> Submit </button>
+            </div>
+        </form> 
+    </body>
+</html>
+
+
+
+        
+
+    </body>
+</html>
