@@ -7,4 +7,4 @@ import politiquiz
 
 @politiquiz.app.route("/", methods=["GET", "POST"])
 def show_index():
-    pass
+    return flask.render_template("index.html")
