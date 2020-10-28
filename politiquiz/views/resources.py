@@ -6,4 +6,4 @@ import politiquiz
 
 @politiquiz.app.route("/u/<username>/", methods=["GET", "POST"])
 def show_resources(username):
-    pass
+    return flask.render_template("resources.html")
