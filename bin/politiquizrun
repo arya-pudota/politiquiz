@@ -6,8 +6,7 @@
 set -Eeuo pipefail
 set -x
 
-if [ ! -d "var/uploads" ]
-then
+if ! test -f "var/politiquiz.sqlite3"; then
     ./bin/politiquizdb create
 fi
 
