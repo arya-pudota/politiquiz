@@ -40,9 +40,9 @@ def show_quiz():
                     break
         political_score = political_score / num_answers
         if political_score > 3:
-            flask.redirect(flask.url_for('show_resources', type="Republican"))
+            return flask.redirect(flask.url_for('show_resources', type="republican"))
         else:
-            flask.redirect(flask.url_for('show_resources', type="Democratic"))
+            return flask.redirect(flask.url_for('show_resources', type="democratic"))
 
 
     questions = connection.execute("SELECT qid, text, topic FROM questions"). \
