@@ -8,23 +8,27 @@
         <h1> 
             Politiquiz Questions
         </h1>
-        <form>
+        <form method="POST">
             <ol>
-            {% for question in questions %}
-                <h4> {{question.question_topic}} </h4>
-                <li> {{question.question_text}} </li>
-                <div>
-                    <input type="radio" id="{{question.question_id}}_1" name="{{question.question_id}}" value=1>
-                    <label for="{{question.question_id}}_1"> Strongly Disagree </label>
-                    <input type="radio" id="{{question.question_id}}_2" name="{{question.question_id}}" value=2>
-                    <label for="{{question.question_id}}_2"> Disagree </label>
-                    <input type="radio" id="{{question.question_id}}_3" name="{{question.question_id}}" value=3>
-                    <label for="{{question.question_id}}_3"> Neutral </label>
-                    <input type="radio" id="{{question.question_id}}_4" name="{{question.question_id}}" value=4>
-                    <label for="{{question.question_id}}_4"> Agree </label>
-                    <input type="radio" id="{{question.question_id}}_5" name="{{question.question_id}}" value=5>
-                    <label for="{{question.question_id}}_5"> Strongly Agree </label>
-                </div>
+            {% for topic in question_topics %}
+                <h3> {{topic}} </h3>
+                {% for question in question_topics[topic] %}
+                    <li> {{question.question_text}} </li>
+                    <div>
+                        <input type="radio" id="{{question.question_id}}_1" name="{{question.question_id}}" value=1>
+                        <label for="{{question.question_id}}_1"> Strongly Disagree </label> <br>
+                        <input type="radio" id="{{question.question_id}}_2" name="{{question.question_id}}" value=2> 
+                        <label for="{{question.question_id}}_2"> Disagree </label> <br>
+                        <input type="radio" id="{{question.question_id}}_3" name="{{question.question_id}}" value=3>
+                        <label for="{{question.question_id}}_3"> Neutral </label> <br>
+                        <input type="radio" id="{{question.question_id}}_4" name="{{question.question_id}}" value=4>
+                        <label for="{{question.question_id}}_4"> Agree </label> <br>
+                        <input type="radio" id="{{question.question_id}}_5" name="{{question.question_id}}" value=5>
+                        <label for="{{question.question_id}}_5"> Strongly Agree </label>
+                    </div>
+                    <br>
+                {% endfor %}
+                <br>
             {% endfor %}
             </ol> 
             <div>
