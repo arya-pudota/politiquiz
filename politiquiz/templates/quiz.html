@@ -5,13 +5,13 @@
         </title>
     </head>
     <body>
-        <h1> 
+        <h1 style = "text-align: center; background-color: black; color: white"> 
             Politiquiz Questions
         </h1>
         <form method="POST">
             <ol>
             {% for topic in question_topics %}
-                <h3> {{topic}} </h3>
+                <h3 style = "text-align: center; background-color: black; color: white"> {{topic}} </h3>
                 {% for question in question_topics[topic] %}
                     <li> {{question.question_text}} </li>
                     <div>
@@ -31,7 +31,7 @@
                 <br>
             {% endfor %}
             </ol> 
-            <div>
+            <div style = "text-align: center;">
                 <button type="submit"> Submit </button>
             </div>
         </form> 
