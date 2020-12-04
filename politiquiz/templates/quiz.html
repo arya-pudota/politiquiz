@@ -3,9 +3,42 @@
         <title>
             Politiquiz Quiz Questions
         </title>
+        <style>
+            .tooltip {
+                position: relative;
+                display: inline;
+            }
+        
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 400px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px 6px;
+        
+                /* Position the tooltip */
+                position: absolute;
+                z-index: 1;
+                top: -5px;
+                left: 105%;
+                margin-left: 5px;
+            }
+        
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+            }
+
+            .h1 {
+                text-align: center;
+                background-color: black;
+                color: white;
+            }
+        </style>
     </head>
     <body>
-        <h1 style = "text-align: center; background-color: black; color: white"> 
+        <h1> 
             Politiquiz Questions
         </h1>
         <form method="POST">
@@ -13,7 +46,14 @@
             {% for topic in question_topics %}
                 <h3 style = "text-align: center; background-color: black; color: white"> {{topic}} </h3>
                 {% for question in question_topics[topic] %}
-                    <li> {{question.question_text}} </li>
+                    <li> {{question.question_text}}
+                        {% if question.text_detail %}
+                        <div class="tooltip">
+                            <img src='/uploads/information.png' alt="More info" />
+                            <div class="tooltiptext" style="display: inline;">{{question.text_detail}}</div>
+                        </div>
+                        {% endif %}
+                    </li>
                     <div>
                         <input type="radio" id="{{question.question_id}}_1" name="{{question.question_id}}" value=1>
                         <label for="{{question.question_id}}_1"> Strongly Disagree </label> <br>

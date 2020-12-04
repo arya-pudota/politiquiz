@@ -5,6 +5,7 @@ CREATE TABLE questions (
 	text VARCHAR(1024) NOT NULL,
 	topic VARCHAR(20) NOT NULL,
 	lean INTEGER NOT NULL,
+	text_detail VARCHAR(1024),
   	PRIMARY KEY(qid)
 );
 

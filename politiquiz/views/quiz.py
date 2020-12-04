@@ -21,14 +21,12 @@ def show_quiz():
         }
     """
     connection = politiquiz.model.get_db()
-    questions = connection.execute("SELECT qid, text, topic, lean FROM questions"). \
+    questions = connection.execute("SELECT qid, text, topic, lean, text_detail FROM questions"). \
         fetchall()
 
     if flask.request.method == "POST":
         political_score = 0
         question_answers = dict(flask.request.form)
-        print(question_answers)
-        print(questions)
         num_answers = len(question_answers)
         for answer in question_answers:
             for question in questions:
@@ -45,8 +43,6 @@ def show_quiz():
             return flask.redirect(flask.url_for('show_resources', type="democratic"))
 
 
-    questions = connection.execute("SELECT qid, text, topic FROM questions"). \
-        fetchall()
     context = {"question_topics": {}}
     for question in questions:
         if question["topic"] not in context["question_topics"]:
@@ -56,4 +52,8 @@ def show_quiz():
             "question_id": question["qid"],
             "question_text": question["text"],
             })
+
+        if question['text_detail']:
+            context['question_topics'][question['topic']][-1]['text_detail'] = question['text_detail']
+            
     return flask.render_template("quiz.html", **context)
