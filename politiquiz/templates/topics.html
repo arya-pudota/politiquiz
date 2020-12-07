@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>
+            Politiquiz Topic Selection
+        </title>
+    </head>
+    <body>
+        <h1 style="text-align:center">
+            Politiquiz Topic Selection
+        </h1>
+        <p>
+            Please select all the topics that you are interested in. Politiquiz will only show questions regarding the issues that you selected.
+        </p>
+        <form method="POST">
+            {% for topic in topics %}
+                <input type="checkbox" id="{{topic}}" name="{{topic}}" value={{topic}}>
+                <label for={{topic}}> {{topic}}</label><br>
+            {% endfor %}
+            <div style = "text-align: center;">
+                <button type="submit"> Submit </button>
+            </div>
+        </form>
+    </body>
+</html>

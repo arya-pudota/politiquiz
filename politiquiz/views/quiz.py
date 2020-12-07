@@ -4,8 +4,8 @@ import flask
 import politiquiz
 
 
-@politiquiz.app.route("/quiz/", methods=["GET", "POST"])
-def show_quiz():
+@politiquiz.app.route("/quiz/<topics>/", methods=["GET", "POST"])
+def show_quiz(topics):
     """
         context : {
             "question_topics":
@@ -23,13 +23,18 @@ def show_quiz():
     connection = politiquiz.model.get_db()
     questions = connection.execute("SELECT qid, text, topic, lean, text_detail FROM questions"). \
         fetchall()
+    selected_questions = []
+    topics = topics.split(",")
+    for question in questions:
+        if question["topic"] in topics:
+            selected_questions.append(question)
 
     if flask.request.method == "POST":
         political_score = 0
         question_answers = dict(flask.request.form)
         num_answers = len(question_answers)
         for answer in question_answers:
-            for question in questions:
+            for question in selected_questions:
                 if int(answer) == question["qid"]:
                     if question["lean"] == "Conservative":
                         political_score += int(question_answers[answer])
@@ -44,7 +49,7 @@ def show_quiz():
 
 
     context = {"question_topics": {}}
-    for question in questions:
+    for question in selected_questions:
         if question["topic"] not in context["question_topics"]:
             context["question_topics"][question["topic"]] = []
 
